@@ -1,12 +1,14 @@
-tasks = []
-c = 0
-while True:
+tasks = [] #vars initialized
+c = 0      #
+
+while True: #Main loop
 	prmt = str(input("'a' for adding new task \a \
 					\n'l' for listing all tasks\
 					\n'c' for changing a task\
 					\n'q' for exiting program\n"))
 
 	if prmt == "a": 
+		""""adding a task"""
 		c+=1
 		usrn, usrdu ,usrds = str(input("name:duration:description\
 							 		  \n(separated by '|')\
@@ -16,14 +18,16 @@ while True:
 		tasks.append({'index':c, 'name':usrn, 'duration':usrdu, 'description':usrds})
 					  
 	elif prmt == 'l':
+		""""listing all tasks"""
 		print(tasks)
 	elif prmt == 'c':
-		while True:
+		""""chaning tasks"""
+		while True: #task change loop
 			n, s =str(input("Which task(No.)\
 						\nand what((n)ame, (d)uration or d(e)scription)\
 						\n(separated by |)\
 						\n")).split("|",1)
-			n -= 1 
+			n -= 1		# 'coz computers count from 0 not 1
 			if 'n' in s:
 				newn = str(input("New name\n"))
 				(tasks[int(n)])['name'] = newn
