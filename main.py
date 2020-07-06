@@ -1,3 +1,4 @@
+import json
 tasks = [] #vars initialized
 c = 0      #
 
@@ -43,3 +44,6 @@ while True: #Main loop
 			else:
 				print("Give a input in a valid format")
 				continue
+	elif prmt == 'q':
+		print("Bye User")
+		break
