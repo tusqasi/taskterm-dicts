@@ -1,6 +1,14 @@
-import json
+import json as j
+
 tasks = [] #vars initialized
 c = 0      #
+
+#Reads from file
+with open('data_file-1.json','r') as read_file:
+	tasks = j.load(read_file)
+#Makes it useable
+tasks = tasks['tasks']
+
 
 while True: #Main loop
 	prmt = str(input("'a' for adding new task \a \
@@ -9,7 +17,7 @@ while True: #Main loop
 					\n'q' for exiting program\n"))
 
 	if prmt == "a": 
-		""""adding a task"""
+		"""adding a task"""
 		c+=1
 		usrn, usrdu ,usrds = str(input("name:duration:description\
 							 		  \n(separated by '|')\
@@ -47,3 +55,13 @@ while True: #Main loop
 	elif prmt == 'q':
 		print("Bye User")
 		break
+#Make data writable
+tasks = {"tasks":tasks}
+print(tasks)
+
+#To save data
+
+with open('data_file-1.json','a') as f :
+	j.dump(tasks,f,indent=4)
+
+
