@@ -1,14 +1,21 @@
 import json as j
 
-tasks = [] #vars initialized
+ #vars initialized
 c = 0      #
 
 #Reads from file
-with open('data_file-1.json','r') as read_file:
-	tasks = j.load(read_file)
-#Makes it useable
-tasks = tasks['tasks']
 
+'''
+with open('data_file-1.json','r+') as read_file:
+	#print(type(read_file.read()))
+	if len(read_file.read()) != 0:
+		tasks = j.load(read_file)
+		#Makes it useable
+		tasks = tasks['tasks']
+	else:
+		tasks = []
+make this right
+'''
 
 while True: #Main loop
 	prmt = str(input("'a' for adding new task \a \
@@ -46,7 +53,7 @@ while True: #Main loop
 				(tasks[int(n)])['duration'] = newd
 				break
 			elif 'e' in s:
-				newd = str(input("New description\n"))
+				newe = str(input("New description\n"))
 				(tasks[int(n)])['description'] = newe
 				break
 			else:
@@ -57,7 +64,7 @@ while True: #Main loop
 		break
 #Make data writable
 tasks = {"tasks":tasks}
-print(tasks)
+#print(tasks)
 
 #To save data
 
