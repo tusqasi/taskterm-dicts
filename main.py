@@ -1,21 +1,13 @@
-import json as j
-
- #vars initialized
-c = 0      #
+import json 
+# c = 0      
 
 #Reads from file
 
-'''
-with open('data_file-1.json','r+') as read_file:
-	#print(type(read_file.read()))
-	if len(read_file.read()) != 0:
-		tasks = j.load(read_file)
-		#Makes it useable
-		tasks = tasks['tasks']
-	else:
-		tasks = []
-make this right
-'''
+with open('data_file-1.json','r') as read_file:
+	tasks = json.load(read_file)
+	tasks = tasks['tasks']
+
+
 
 while True: #Main loop
 	prmt = str(input("'a' for adding new task \a \
@@ -68,7 +60,7 @@ tasks = {"tasks":tasks}
 
 #To save data
 
-with open('data_file-1.json','a') as f :
-	j.dump(tasks,f,indent=4)
+with open('data_file-1.json','w') as f :
+	json.dump(tasks,f,indent=4)
 
 
