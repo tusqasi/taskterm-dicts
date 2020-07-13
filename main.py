@@ -1,13 +1,15 @@
 import json 
-# c = 0      
+c = 0      
 
 #Reads from file
 
 with open('data_file-1.json','r') as read_file:
-	tasks = json.load(read_file)
-	tasks = tasks['tasks']
-
-
+	str_file = read_file.read()
+	if len(str_file) != 0:
+		tasks = json.loads(str_file)
+		tasks = tasks['tasks']
+	else:
+		tasks = []
 
 while True: #Main loop
 	prmt = str(input("'a' for adding new task \a \
@@ -27,7 +29,11 @@ while True: #Main loop
 					  
 	elif prmt == 'l':
 		""""listing all tasks"""
-		print(tasks)
+		if len(tasks) == 0:
+			print("No Tasks Now")
+		else:
+			print(tasks)
+
 	elif prmt == 'c':
 		""""chaning tasks"""
 		while True: #task change loop
@@ -58,9 +64,9 @@ while True: #Main loop
 tasks = {"tasks":tasks}
 #print(tasks)
 
-#To save data
-
-with open('data_file-1.json','w') as f :
-	json.dump(tasks,f,indent=4)
+#To save data, only when something is done. 
+if len(tasks) != 0:
+	with open('data_file-{x}.json'.format(x=c),'w') as f :
+		json.dump(tasks,f,indent=4)
 
 
