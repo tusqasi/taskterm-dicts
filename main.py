@@ -1,15 +1,25 @@
-import json 
-c = 0      
+import json
 
 #Reads from file
+sort_index = []
 
-with open('data_file-1.json','r') as read_file:
-	str_file = read_file.read()
-	if len(str_file) != 0:
-		tasks = json.loads(str_file)
-		tasks = tasks['tasks']
-	else:
-		tasks = []
+
+try:
+
+	with open('data_file-1.json', 'r+') as read_file:
+		str_file = read_file.read()
+		if len(str_file) != 0:
+			tasks = json.loads(str_file)
+			tasks = tasks['tasks']
+			for t in tasks:
+				sort_index.append(t['index'])
+		else:
+			tasks = []
+
+except FileNotFoundError:
+	tasks = [] 
+
+c = max(sort_index, default=0)
 
 while True: #Main loop
 	prmt = str(input("'a' for adding new task \a \
@@ -25,7 +35,10 @@ while True: #Main loop
 							 		  \n(duration:HH-MM)\
 							 		  \n")).split("|",  2)
 
-		tasks.append({'index':c, 'name':usrn, 'duration':usrdu, 'description':usrds})
+		tasks.append({'index':c,
+					  'name':usrn,
+					  'duration':usrdu, 
+					  'description':usrds })
 					  
 	elif prmt == 'l':
 		""""listing all tasks"""
@@ -66,7 +79,5 @@ tasks = {"tasks":tasks}
 
 #To save data, only when something is done. 
 if len(tasks) != 0:
-	with open('data_file-{x}.json'.format(x=c),'w') as f :
+	with open('data_file-1.json','w') as f :
 		json.dump(tasks,f,indent=4)
-
-
