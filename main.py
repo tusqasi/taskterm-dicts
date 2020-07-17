@@ -54,7 +54,9 @@ while True: #Main loop
 						\nand what((n)ame, (d)uration or d(e)scription)\
 						\n(separated by |)\
 						\n")).split("|",1)
+			n = int(n)
 			n -= 1		# 'coz computers count from 0 not 1
+
 			if 'n' in s:
 				newn = str(input("New name\n"))
 				(tasks[int(n)])['name'] = newn
@@ -76,6 +78,7 @@ while True: #Main loop
 #Make data writable
 tasks = {"tasks":tasks}
 #print(tasks)
+
 
 #To save data, only when something is done. 
 if len(tasks) != 0:
