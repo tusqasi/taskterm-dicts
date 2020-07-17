@@ -1,5 +1,5 @@
 import json
-
+from defs import TaskFuncs
 #Reads from file
 sort_index = []
 
@@ -22,7 +22,7 @@ except FileNotFoundError:
 c = max(sort_index, default=0)
 
 while True: #Main loop
-	prmt = str(input("'a' for adding new task \a \
+	prmt = str(input("'a' for adding new task\
 					\n'l' for listing all tasks\
 					\n'c' for changing a task\
 					\n'q' for exiting program\n"))
@@ -35,10 +35,7 @@ while True: #Main loop
 							 		  \n(duration:HH-MM)\
 							 		  \n")).split("|",  2)
 
-		tasks.append({'index':c,
-					  'name':usrn,
-					  'duration':usrdu, 
-					  'description':usrds })
+		tasks.append(TaskFuncs.addTask(ind=c, name=usrn, dur=usrdu, desc=usrds))
 					  
 	elif prmt == 'l':
 		""""listing all tasks"""
@@ -75,6 +72,9 @@ while True: #Main loop
 	elif prmt == 'q':
 		print("Bye User")
 		break
+
+	else:
+		print("No function of that name")
 #Make data writable
 tasks = {"tasks":tasks}
 #print(tasks)
