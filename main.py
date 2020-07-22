@@ -1,5 +1,5 @@
 import json
-from defs import TaskFuncs
+import defs.TaskFuncs
 #Reads from file
 sort_index = []
 
@@ -45,30 +45,7 @@ while True: #Main loop
 			print(tasks)
 
 	elif prmt == 'c':
-		""""chaning tasks"""
-		while True: #task change loop
-			n, s =str(input("Which task(No.)\
-						\nand what((n)ame, (d)uration or d(e)scription)\
-						\n(separated by |)\
-						\n")).split("|",1)
-			n = int(n)
-			n -= 1		# 'coz computers count from 0 not 1
-
-			if 'n' in s:
-				newn = str(input("New name\n"))
-				(tasks[int(n)])['name'] = newn
-				break
-			elif 'd' in s:
-				newd = str(input("New duration\n"))
-				(tasks[int(n)])['duration'] = newd
-				break
-			elif 'e' in s:
-				newe = str(input("New description\n"))
-				(tasks[int(n)])['description'] = newe
-				break
-			else:
-				print("Give a input in a valid format")
-				continue
+		tasks = TaskFuncs.chgTask(Tasks)
 	elif prmt == 'q':
 		print("Bye User")
 		break
