@@ -4,18 +4,18 @@ class AppWin(Frame):
 
 	def __init__(self,master=None):
 
-		#frames defined or whatever
+		##  frames defined or whatever  ##
 
 		addFrame        = Frame(master)          #packed
 		chgFrame        = Frame(master)			 #packed
 		lastFrame       = Frame(master)			 #packed
-		#frames packed
+		##  frames packed  ##
 		
 		addFrame.grid(row=0, column=0)           
 		chgFrame.grid(row=1,column=0)        
 		lastFrame.grid(row=3)                    
 
-		#labels
+		##  labels  ##
 		addNameLabel    = Label(addFrame,		 #packed
 							    text='Task Name',
 							    anchor="e",
@@ -32,18 +32,19 @@ class AppWin(Frame):
 		chgNameLabel    = Label(chgFrame,
 								text='New Name',
 								anchor='e',
-								width=16)
+								width=14)
 
 		chgDurLabel     = Label(chgFrame,
 					 		    text='New Duration',
 					 		    anchor='e',
-					 		    width=16)
+					 		    width=14)
 
 		chgDescLabel    = Label(chgFrame,
 								text='New Description',
 								anchor='e',
-								width=16)
-		#labels packed
+								width=14)
+		##  labels packed  ##
+		#
 		addDurLabel.grid(row=1, column=0)
 		addNameLabel.grid(row=0, column=0)
 		addDescLabel.grid(row=2, column=0)
@@ -52,25 +53,31 @@ class AppWin(Frame):
 		chgDurLabel.grid(row=1, column=0)
 		chgDescLabel.grid(row=2, column=0)
 
-
-
-		
-
-		#entry boxes 
+		##  entry boxes  ##
 
 		self.addNameEntry    = Entry(addFrame)        
 		self.addDurEntry     = Entry(addFrame)
 		self.addDescEntry    = Entry(addFrame)
 
+		self.chgNameEntry    = Entry(chgFrame)
+		self.chgDurEntry     = Entry(chgFrame)
+		self.chgDescEntry    = Entry(chgFrame)
+
 		self.addNameEntry.grid(row=0,column=1)
 		self.addDurEntry.grid(row=1,column=1) 
 		self.addDescEntry.grid(row=2,column=1)
-		# contents StrVar
 
+		self.chgNameEntry.grid(row=0,column=1)
+		self.chgDurEntry.grid(row=1,column=1) 
+		self.chgDescEntry.grid(row=2,column=1)
+
+		##  contents StrVar  ##
+
+		# add
 		self.addNameContent  = StringVar()  
 		self.addDurContent   = StringVar()
 		self.addDescContent  = StringVar() 
-		
+		# chg
 		self.chgNameContent  = StringVar()  
 		self.chgDurContent   = StringVar() 
 		self.chgDescContent  = StringVar()  
@@ -87,13 +94,29 @@ class AppWin(Frame):
 		self.addDurEntry["textvariable"] = self.addDurContent
 		self.addDescEntry["textvariable"] = self.addDescContent
 		
-		self.addNameEntry.bind('<Key-Return>',
-								self.) 		 
+		self.chgNameEntry["textvariable"] = self.chgNameContent
+		self.chgDurEntry["textvariable"] = self.chgDurContent
+		self.chgDescEntry["textvariable"] = self.chgDescContent
+		
 
+
+		
+		# self.addNameEntry.bind('<Key-Return>',
+		# 						self.setName) 		 
+		# self.addDurEntry.bind('<Key-Return>',
+		# 						self.setDur)
+		# self.addDescEntry.bind('<Key-Return>',
+		# 						self.setDesc)
+
+		# self.chgNameEntry.bind('<Key-Return>',
+		# 						self.setName)
+		# self.addDurEntry.bind('<Key-Return>',
+		# 						self.setDur)
+		# self.addDescEntry.bind('<Key-Return>',
+		# 						self.setDesc)
 
 
 root = Tk()
-root.geometry("280x140")
 
 app = AppWin(root)
 
