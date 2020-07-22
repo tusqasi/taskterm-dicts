@@ -1,8 +1,13 @@
 import json
+
 class TaskFuncs:
-	"""doc string for TaskFuncs"""
-			
-	def addTask(ind, name , dur, desc):
+	"""Provides set of Functions
+	 for working with tasks in Taskterm-dicts"""
+				
+	def addTask(ind, name, dur, desc):
+
+		""" returns a new tasks
+			list with added task"""	
 		return {'index':ind,
 				'name':name,
 				'duration':dur,
@@ -39,6 +44,7 @@ class TaskFuncs:
 		return taskl
 
 	def lsTask(taskl):
+		""" Prints tasks in a formated way """
 		if len(taskl) != 0:
 			for task in taskl:
 				print("Serial:{index}\
