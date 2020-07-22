@@ -1,9 +1,5 @@
 from tkinter import * 
 
-
-
-
-
 class AppWin(Frame):
 
 	def __init__(self,master=None):
