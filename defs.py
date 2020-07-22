@@ -1,9 +1,9 @@
-
+import json
 class TaskFuncs:
 	"""doc string for TaskFuncs"""
 			
-	def addTask(id, name , dur, desc):
-		return {'index':id,
+	def addTask(ind, name , dur, desc):
+		return {'index':ind,
 				'name':name,
 				'duration':dur,
 				'description':desc }
@@ -22,15 +22,33 @@ class TaskFuncs:
 				newn = str(input("New name\n"))
 				(taskl[int(n)])['name'] = newn
 				break
-			elif 'd' in s:
+			
+			if 'd' in s:
 				newd = str(input("New duration\n"))
 				(taskl[int(n)])['duration'] = newd
 				break
-			elif 'e' in s:
+
+			if 'e' in s:
 				newe = str(input("New description\n"))
 				(taskl[int(n)])['description'] = newe
 				break
-			else:
+			if s not in "nde":
 				print("Give a input in a valid format")
 				continue
+
 		return taskl
+
+	def lsTask(taskl):
+		if len(taskl) != 0:
+			for task in taskl:
+				print("Serial:{index}\
+			     \nName:{name}\
+			     \nDuration:{dur}\
+			     \nDescription:{desc}\
+			     \
+			     \n".format(index=task['index'], 
+			     			name=task['name'],
+			     			dur=task['duration'],
+			     			desc=task['description']))	
+		else:
+			print("No Tasks Now")

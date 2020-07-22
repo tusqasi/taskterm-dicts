@@ -1,5 +1,5 @@
 import json
-import defs.TaskFuncs
+from defs import TaskFuncs
 #Reads from file
 sort_index = []
 
@@ -39,13 +39,10 @@ while True: #Main loop
 					  
 	elif prmt == 'l':
 		""""listing all tasks"""
-		if len(tasks) == 0:
-			print("No Tasks Now")
-		else:
-			print(tasks)
+		TaskFuncs.lsTask(tasks)
 
 	elif prmt == 'c':
-		tasks = TaskFuncs.chgTask(Tasks)
+		tasks = TaskFuncs.chgTask(tasks)
 	elif prmt == 'q':
 		print("Bye User")
 		break
@@ -56,8 +53,9 @@ while True: #Main loop
 tasks = {"tasks":tasks}
 #print(tasks)
 
-
+print(len(tasks['tasks']))
 #To save data, only when something is done. 
-if len(tasks) != 0:
+if (len(tasks['tasks'])) != 0:
 	with open('data_file-1.json','w') as f :
 		json.dump(tasks,f,indent=4)
+		
