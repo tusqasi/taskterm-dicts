@@ -1,5 +1,7 @@
 from tkinter import * 
 
+taskls = []
+
 class AppWin(Frame):
 
 	def __init__(self,master=None):
@@ -98,8 +100,10 @@ class AppWin(Frame):
 		self.chgDurEntry["textvariable"] = self.chgDurContent
 		self.chgDescEntry["textvariable"] = self.chgDescContent
 		
-
-
+		self.addButton = Button(addFrame,text='Add Task')
+		self.addButton.grid(row=3,columnspan=2)
+		self.addButton.bind('<Button-1>',
+							self.createTask)
 		
 		# self.addNameEntry.bind('<Key-Return>',
 		# 						self.setName) 		 
@@ -115,5 +119,15 @@ class AppWin(Frame):
 		# self.addDescEntry.bind('<Key-Return>',
 		# 						self.setDesc)
 
-	def setName(self):
-		
+	def createTask(self, event):
+		if len(taskls) == 0:
+			taskls.append({'index':0,
+						   'name' :self.addNameEntry.get(),
+						   'dur'  :self.addDurEntry.get(),
+						   'decs' :self.addDescEntry.get()})
+		else:
+			taskls.append({'index':len(taskls),
+						   'name' :self.addNameEntry.get(),
+						   'dur'  :self.addDurEntry.get(),
+						   'decs' :self.addDescEntry.get()})
+		print(taskls)
