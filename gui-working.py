@@ -4,13 +4,14 @@ from tkinter import *
 
 
 
-class AppWin:
-	def __init__(self,master):
+class AppWin(Frame):
+
+	def __init__(self,master=None):
 
 		#frames defined or whatever
 
 		addFrame        = Frame(master)          #packed
-		chgFrame    = Frame(master)			 #packed
+		chgFrame        = Frame(master)			 #packed
 		lastFrame       = Frame(master)			 #packed
 		#frames packed
 		
@@ -56,7 +57,11 @@ class AppWin:
 		chgDescLabel.grid(row=2, column=0)
 
 
+
+		
+
 		#entry boxes 
+
 		self.addNameEntry    = Entry(addFrame)        
 		self.addDurEntry     = Entry(addFrame)
 		self.addDescEntry    = Entry(addFrame)
@@ -64,14 +69,35 @@ class AppWin:
 		self.addNameEntry.grid(row=0,column=1)
 		self.addDurEntry.grid(row=1,column=1) 
 		self.addDescEntry.grid(row=2,column=1)
-		
- 		 
+		# contents StrVar
 
-	def DoThings(e):
-		print("YeYa")
+		self.addNameContent  = StringVar()  
+		self.addDurContent   = StringVar()
+		self.addDescContent  = StringVar() 
+		
+		self.chgNameContent  = StringVar()  
+		self.chgDurContent   = StringVar() 
+		self.chgDescContent  = StringVar()  
+
+		self.addNameContent.set("Task Name")
+		self.addDurContent.set("Task Duration")
+		self.addDescContent.set("Task Description")
+
+		self.chgNameContent.set("New Task Name")
+		self.chgDurContent.set("New Task Duration")
+		self.chgDescContent.set("New Task Description")	
+
+		self.addNameEntry["textvariable"] = self.addNameContent
+		self.addDurEntry["textvariable"] = self.addDurContent
+		self.addDescEntry["textvariable"] = self.addDescContent
+		
+		self.addNameEntry.bind('<Key-Return>',
+								self.) 		 
+
+
 
 root = Tk()
-#root.geometry("800x600")
+root.geometry("280x140")
 
 app = AppWin(root)
 
