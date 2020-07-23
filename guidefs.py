@@ -4,13 +4,13 @@ taskls = []
 
 class AppWin(Frame):
 
-	def __init__(self,master=None):
+	def __init__(self, master):
 
 		##  frames defined or whatever  ##
 
-		addFrame        = Frame(master)          #packed
-		chgFrame        = Frame(master)			 #packed
-		lastFrame       = Frame(master)			 #packed
+		addFrame  = Frame(master)         
+		chgFrame  = Frame(master)			
+		lastFrame = Frame(master)			
 		##  frames packed  ##
 		
 		addFrame.grid(row=0, column=0)           
@@ -18,52 +18,54 @@ class AppWin(Frame):
 		lastFrame.grid(row=3)                    
 
 		##  labels  ##
-		addNameLabel    = Label(addFrame,		 #packed
-							    text='Task Name',
-							    anchor="e",
-							    width=14)
-		addDurLabel     = Label(addFrame, 		 #packed
-							    text='Task duration',
-							    anchor="e",
-							    width=14)
-		addDescLabel    = Label(addFrame,		 #packed
-							    text='Task Description',
-							    anchor="e",
-							    width=14)
+		
+		Label(addFrame,
+			  text="Task Name",
+			  anchor="e",
+			  width=17
+			  ).grid(row=1, column=0)
 
-		chgNameLabel    = Label(chgFrame,
-								text='New Name',
-								anchor='e',
-								width=14)
+		Label(addFrame,
+			  text="Task Duration",
+			  anchor="e",
+			  width=17
+			  ).grid(row=0, column=0)
 
-		chgDurLabel     = Label(chgFrame,
-					 		    text='New Duration',
-					 		    anchor='e',
-					 		    width=14)
+		Label(addFrame,
+			  text="Task Description",
+			  anchor="e",
+			  width=17
+			  ).grid(row=2, column=0)
 
-		chgDescLabel    = Label(chgFrame,
-								text='New Description',
-								anchor='e',
-								width=14)
-		##  labels packed  ##
-		#
-		addDurLabel.grid(row=1, column=0)
-		addNameLabel.grid(row=0, column=0)
-		addDescLabel.grid(row=2, column=0)
 
-		chgNameLabel.grid(row=0, column=0)
-		chgDurLabel.grid(row=1, column=0)
-		chgDescLabel.grid(row=2, column=0)
+		Label(chgFrame,
+			  text="New Task Name",
+			  anchor="e",
+			  width=17
+			  ).grid(row=0, column=0)
+
+		Label(chgFrame,
+			  text="New Task Duration",
+			  anchor="e",
+			  width=17
+			  ).grid(row=1, column=0)
+
+		Label(chgFrame,
+			  text="New Task Description ",
+			  anchor="e",
+			  width=17
+			  ).grid(row=2, column=0)
+
 
 		##  entry boxes  ##
 
-		self.addNameEntry    = Entry(addFrame)        
-		self.addDurEntry     = Entry(addFrame)
-		self.addDescEntry    = Entry(addFrame)
+		self.addNameEntry = Entry(addFrame)        
+		self.addDurEntry  = Entry(addFrame)
+		self.addDescEntry = Entry(addFrame)
 
-		self.chgNameEntry    = Entry(chgFrame)
-		self.chgDurEntry     = Entry(chgFrame)
-		self.chgDescEntry    = Entry(chgFrame)
+		self.chgNameEntry = Entry(chgFrame)
+		self.chgDurEntry  = Entry(chgFrame)
+		self.chgDescEntry = Entry(chgFrame)
 
 		self.addNameEntry.grid(row=0,column=1)
 		self.addDurEntry.grid(row=1,column=1) 
@@ -104,6 +106,11 @@ class AppWin(Frame):
 		self.addButton.grid(row=3,columnspan=2)
 		self.addButton.bind('<Button-1>',
 							self.createTask)
+
+		self.chgButton = Button(chgFrame,text='Change Task')
+		self.chgButton.grid(row=3,columnspan=2)
+		self.chgButton.bind('<Button-1>',
+							self.setTask)
 		
 		# self.addNameEntry.bind('<Key-Return>',
 		# 						self.setName) 		 
@@ -131,3 +138,6 @@ class AppWin(Frame):
 						   'dur'  :self.addDurEntry.get(),
 						   'decs' :self.addDescEntry.get()})
 		print(taskls)
+
+	def setTask(self, event):
+		pass
