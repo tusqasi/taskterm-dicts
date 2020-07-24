@@ -140,7 +140,8 @@ class AppWin(Frame):
 		if taskls[0]['index'] == "d":
 			taskls.pop()
 
-		if len(taskls) == 1:
+		##working here	
+		elif len(taskls) == 1:
 			
 			taskls.append({'index':len(taskls),
 						   'name' :self.addNameEntry.get(),
@@ -160,8 +161,9 @@ class AppWin(Frame):
 								  *taskls)
 
 		self.chgDrop.grid(row=1, columnspan=2)
-		
+
 		self.chgDropContent.set(taskls[0])
+		print(self.chgDurContent.get())
 	def setTask(self, event):
 		pass
 
