@@ -1,6 +1,6 @@
 from tkinter import * 
 
-taskls = [{'index':0,'name':'None','dur':'None','decs':'None'}]
+taskls = [{'index':"d",'name':'None','dur':'None','decs':'None'}]
 
 class AppWin(Frame):
 
@@ -57,7 +57,7 @@ class AppWin(Frame):
 			  ).grid(row=4, column=0)
 		Label(chgFrame,
 			  text="Select Task to Change"
-			  ).grid(row=0,columnspan=2)
+			  ).grid(row=0,columnspan=2	)
 
 
 		##  entry boxes  ##
@@ -134,9 +134,13 @@ class AppWin(Frame):
 		# 						self.setDesc)
 
 	def createTask(self, event):
-		taskls.pop()
-		if len(taskls) == 0:
-			taskls.append({'index':0,
+		
+		if taskls[0]['index'] == "d":
+			taskls.pop()
+
+		if len(taskls) == 1:
+			
+			taskls.append({'index':len(taskls),
 						   'name' :self.addNameEntry.get(),
 						   'dur'  :self.addDurEntry.get(),
 						   'decs' :self.addDescEntry.get()})
