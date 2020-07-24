@@ -109,16 +109,9 @@ class AppWin(Frame):
 		
 		# Drop Down menu
 		
-		self.chgDropContent = StringVar(chgFrame)
-		self.chgDropContent.set(taskls[0])
-
-		self.chgDrop = OptionMenu(chgFrame,
-								  self.chgDropContent,
-								  *taskls)
-
-		self.chgDrop.grid(row=1, columnspan=2)
 
 
+		self.addButton.bind ('<Button-1>', self.dropMenu)
 		# self.addNameEntry.bind('<Key-Return>',
 		# 						self.setName) 		 
 		# self.addDurEntry.bind('<Key-Return>',
@@ -154,3 +147,15 @@ class AppWin(Frame):
 
 	def setTask(self, event):
 		pass
+
+	def dropMenu(self, event):
+
+
+		self.chgDropContent = StringVar(self.chgFrame)
+		self.chgDropContent.set(taskls[0])
+
+		self.chgDrop = OptionMenu(self.chgFrame,
+								  self.chgDropContent,
+								  *taskls)
+
+		self.chgDrop.grid(row=1, columnspan=2)
