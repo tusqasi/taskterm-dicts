@@ -9,12 +9,12 @@ class AppWin(Frame):
 		##  frames defined or whatever  ##
 
 		addFrame  = Frame(master)         
-		chgFrame  = Frame(master)			
+		self.chgFrame  = Frame(master)			
 		lastFrame = Frame(master)			
 		##  frames packed  ##
 		
 		addFrame.grid(row=0, column=0)           
-		chgFrame.grid(row=1,column=0)        
+		self.chgFrame.grid(row=1,column=0)        
 		lastFrame.grid(row=3)                    
 
 		##  labels  ##
@@ -38,24 +38,24 @@ class AppWin(Frame):
 			  ).grid(row=2, column=0)
 
 
-		Label(chgFrame,
+		Label(self.chgFrame,
 			  text="New Task Name",
 			  anchor="e",
 			  width=17
 			  ).grid(row=2, column=0)
 
-		Label(chgFrame,
+		Label(self.chgFrame,
 			  text="New Task Duration",
 			  anchor="e",
 			  width=17
 			  ).grid(row=3, column=0)
 
-		Label(chgFrame,
+		Label(self.chgFrame,
 			  text="New Task Description ",
 			  anchor="e",
 			  width=17
 			  ).grid(row=4, column=0)
-		Label(chgFrame,
+		Label(self.chgFrame,
 			  text="Select Task to Change"
 			  ).grid(row=0,columnspan=2	)
 
@@ -66,9 +66,9 @@ class AppWin(Frame):
 		self.addDurEntry  = Entry(addFrame)
 		self.addDescEntry = Entry(addFrame)
 
-		self.chgNameEntry = Entry(chgFrame)
-		self.chgDurEntry  = Entry(chgFrame)
-		self.chgDescEntry = Entry(chgFrame)
+		self.chgNameEntry = Entry(self.chgFrame)
+		self.chgDurEntry  = Entry(self.chgFrame)
+		self.chgDescEntry = Entry(self.chgFrame)
 
 		self.addNameEntry.grid(row=0,column=1)
 		self.addDurEntry.grid(row=1,column=1) 
@@ -102,16 +102,23 @@ class AppWin(Frame):
 		self.addButton.bind('<Button-1>',
 							self.createTask)
 
-		self.chgButton = Button(chgFrame,text='Change Task')
+		self.chgButton = Button(self.chgFrame,text='Change Task')
 		self.chgButton.grid(row=5,columnspan=2)
 		self.chgButton.bind('<Button-1>',
 							self.setTask)
 		
 		# Drop Down menu
-		
+		self.chgDropContent = StringVar(self.chgFrame)
+		self.chgDropContent.set(taskls[0])
+
+		self.chgDrop = OptionMenu(self.chgFrame,
+								  self.chgDropContent,
+								  *taskls)
+
+		self.chgDrop.grid(row=1, columnspan=2)
 
 
-		self.addButton.bind ('<Button-1>', self.dropMenu)
+		# self.addButton.bind('<Button-1>', self.dropMenu, add=False)
 		# self.addNameEntry.bind('<Key-Return>',
 		# 						self.setName) 		 
 		# self.addDurEntry.bind('<Key-Return>',
@@ -129,6 +136,7 @@ class AppWin(Frame):
 	def createTask(self, event):
 		if self.addDurEntry.get() == "":
 			self.addDurContent.set("Empty Duration not allowed")
+
 		if taskls[0]['index'] == "d":
 			taskls.pop()
 
@@ -144,18 +152,18 @@ class AppWin(Frame):
 						   'dur'  :self.addDurEntry.get(),
 						   'decs' :self.addDescEntry.get()})
 		print(taskls)
-
-	def setTask(self, event):
-		pass
-
-	def dropMenu(self, event):
-
-
-		self.chgDropContent = StringVar(self.chgFrame)
-		self.chgDropContent.set(taskls[0])
+		# self.chgDropContent = StringVar(self.chgFrame)
+		# self.chgDropContent.set(taskls[0])
 
 		self.chgDrop = OptionMenu(self.chgFrame,
 								  self.chgDropContent,
 								  *taskls)
 
 		self.chgDrop.grid(row=1, columnspan=2)
+
+	def setTask(self, event):
+		pass
+
+	def dropMenu(self, event):
+		pass
+
