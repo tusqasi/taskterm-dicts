@@ -74,9 +74,9 @@ class AppWin(Frame):
 		self.addDurEntry.grid(row=1,column=1) 
 		self.addDescEntry.grid(row=2,column=1)
 
-		self.chgNameEntry.grid(row=1,column=1)
-		self.chgDurEntry.grid(row=2,column=1) 
-		self.chgDescEntry.grid(row=3,column=1)
+		self.chgNameEntry.grid(row=2,column=1)
+		self.chgDurEntry.grid(row=3,column=1) 
+		self.chgDescEntry.grid(row=4,column=1)
 
 		##  contents StrVar  ##
 		# add
@@ -134,7 +134,8 @@ class AppWin(Frame):
 		# 						self.setDesc)
 
 	def createTask(self, event):
-		
+		if self.addDurEntry.get() == "":
+			self.addDurContent.set("Empty Duration not allowed")
 		if taskls[0]['index'] == "d":
 			taskls.pop()
 
