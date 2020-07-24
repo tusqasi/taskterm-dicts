@@ -1,6 +1,6 @@
 from tkinter import * 
 
-taskls = []
+taskls = [{'index':0,'name':'None','dur':'None','decs':'None'}]
 
 class AppWin(Frame):
 
@@ -127,6 +127,7 @@ class AppWin(Frame):
 		# 						self.setDesc)
 
 	def createTask(self, event):
+		taskls.pop()
 		if len(taskls) == 0:
 			taskls.append({'index':0,
 						   'name' :self.addNameEntry.get(),
