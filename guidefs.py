@@ -42,19 +42,22 @@ class AppWin(Frame):
 			  text="New Task Name",
 			  anchor="e",
 			  width=17
-			  ).grid(row=0, column=0)
+			  ).grid(row=2, column=0)
 
 		Label(chgFrame,
 			  text="New Task Duration",
 			  anchor="e",
 			  width=17
-			  ).grid(row=1, column=0)
+			  ).grid(row=3, column=0)
 
 		Label(chgFrame,
 			  text="New Task Description ",
 			  anchor="e",
 			  width=17
-			  ).grid(row=2, column=0)
+			  ).grid(row=4, column=0)
+		Label(chgFrame,
+			  text="Select Task to Change"
+			  ).grid(row=0,columnspan=2)
 
 
 		##  entry boxes  ##
@@ -71,12 +74,11 @@ class AppWin(Frame):
 		self.addDurEntry.grid(row=1,column=1) 
 		self.addDescEntry.grid(row=2,column=1)
 
-		self.chgNameEntry.grid(row=0,column=1)
-		self.chgDurEntry.grid(row=1,column=1) 
-		self.chgDescEntry.grid(row=2,column=1)
+		self.chgNameEntry.grid(row=1,column=1)
+		self.chgDurEntry.grid(row=2,column=1) 
+		self.chgDescEntry.grid(row=3,column=1)
 
 		##  contents StrVar  ##
-
 		# add
 		self.addNameContent  = StringVar()  
 		self.addDurContent   = StringVar()
@@ -86,13 +88,6 @@ class AppWin(Frame):
 		self.chgDurContent   = StringVar() 
 		self.chgDescContent  = StringVar()  
 
-		# self.addNameContent.set("Task Name")
-		# self.addDurContent.set("Task Duration")
-		# self.addDescContent.set("Task Description")
-
-		# self.chgNameContent.set("New Task Name")
-		# self.chgDurContent.set("New Task Duration")
-		# self.chgDescContent.set("New Task Description")	
 
 		self.addNameEntry["textvariable"] = self.addNameContent
 		self.addDurEntry["textvariable"] = self.addDurContent
@@ -108,10 +103,22 @@ class AppWin(Frame):
 							self.createTask)
 
 		self.chgButton = Button(chgFrame,text='Change Task')
-		self.chgButton.grid(row=3,columnspan=2)
+		self.chgButton.grid(row=5,columnspan=2)
 		self.chgButton.bind('<Button-1>',
 							self.setTask)
 		
+		# Drop Down menu
+		
+		self.chgDropContent = StringVar(chgFrame)
+		self.chgDropContent.set(taskls[0])
+
+		self.chgDrop = OptionMenu(chgFrame,
+								  self.chgDropContent,
+								  *taskls)
+
+		self.chgDrop.grid(row=1, columnspan=2)
+
+
 		# self.addNameEntry.bind('<Key-Return>',
 		# 						self.setName) 		 
 		# self.addDurEntry.bind('<Key-Return>',
