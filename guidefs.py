@@ -97,54 +97,19 @@ class AppWin(Frame):
 		self.chgDurEntry["textvariable"] = self.chgDurContent
 		self.chgDescEntry["textvariable"] = self.chgDescContent
 		
-		self.addButton = Button(addFrame,text='Add Task')
-		self.addButton.grid(row=3,columnspan=2)
-		self.addButton.bind('<Button-1>',
-							self.createTask)
+		self.addBtn = Button(addFrame, text='Add Task')
+		self.addBtn.grid(row=3,columnspan=2)
+		self.addBtn.bind('<Button-1>',
+						  self.addBtnFunc)
 
-		self.chgButton = Button(self.chgFrame,text='Change Task')
-		self.chgButton.grid(row=5,columnspan=2)
-		self.chgButton.bind('<Button-1>',
-							self.setTask)
+		self.chgBtn = Button(self.chgFrame,text='Change Task')
+		self.chgBtn.grid(row=5,columnspan=2)
+		self.chgBtn.bind('<Button-1>',
+						  self.chgBtnFunc)
 		
-		# Drop Down menu
-		self.chgDropContent = StringVar(self.chgFrame)
-		self.chgDropContent.set({'index':"d",'name':'None','dur':'None','decs':'None'})
 
 
-		if len(taskls) == 0:
-			self.chgDrop = OptionMenu(self.chgFrame,
-									  self.chgDropContent,
-									  {'index':"d",'name':'None','dur':'None','decs':'None'})
-
-		else:
-			self.chgDrop = OptionMenu(self.chgFrame,
-									  self.chgDropContent,
-									  *taskls)
-		self.chgDrop.grid(row=1, columnspan=2)
-
-
-		# self.addButton.bind('<Button-1>', self.dropMenu, add=False)
-		# self.addNameEntry.bind('<Key-Return>',
-		# 						self.setName) 		 
-		# self.addDurEntry.bind('<Key-Return>',
-		# 						self.setDur)
-		# self.addDescEntry.bind('<Key-Return>',
-		# 						self.setDesc)
-
-		# self.chgNameEntry.bind('<Key-Return>',
-		# 						self.setName)
-		# self.addDurEntry.bind('<Key-Return>',
-		# 						self.setDur)
-		# self.addDescEntry.bind('<Key-Return>',
-		# 						self.setDesc)
-
-	def createTask(self, event):
-		if self.addDurEntry.get() == "":
-			self.addDurContent.set("Empty Duration not allowed")
-			return
-
-		##working here
+	def createTask(self):
 		if len(taskls) == 1:
 			
 			taskls.append({'index':len(taskls),
@@ -156,24 +121,13 @@ class AppWin(Frame):
 						   'name' :self.addNameEntry.get(),
 						   'dur'  :self.addDurEntry.get(),
 						   'decs' :self.addDescEntry.get()})
-		self.dropMenu()
 
-	def setTask(self):
-		# n = int(self.chgDropContent.get()['index'])
-		print( self.chgDropContent.get())
-		# self.chgNameContent.set(taskls[n]['name'])
-		# self.chgDurContent.set(taskls[n]['dur'])
-		# self.chgDescContent.set(taskls[n]['desc'])
-	def dropMenu(self):
-		# self.chgDropContent = StringVar(self.chgFrame)
-		# self.chgDropContent.set(taskls[0])
+	def setTask():
+		pass
 
-		self.chgDrop = OptionMenu(self.chgFrame,
-								  self.chgDropContent,
-								  *taskls)
 
-		self.chgDrop.grid(row=1, columnspan=2)
+	def chgBtnFunc();
+		pass
 
-		# self.chgDropContent.set(taskls[0])
-		self.setTask()
-
+	def addBtnFunc():
+		pass
