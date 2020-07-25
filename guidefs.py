@@ -1,6 +1,6 @@
 from tkinter import * 
 
-taskls = [{'index':"d",'name':'None','dur':'None','decs':'None'}]
+taskls = []
 
 class AppWin(Frame):
 
@@ -109,12 +109,18 @@ class AppWin(Frame):
 		
 		# Drop Down menu
 		self.chgDropContent = StringVar(self.chgFrame)
-		self.chgDropContent.set(taskls[0])
+		self.chgDropContent.set({'index':"d",'name':'None','dur':'None','decs':'None'})
 
-		self.chgDrop = OptionMenu(self.chgFrame,
-								  self.chgDropContent,
-								  *taskls)
 
+		if len(taskls) == 0:
+			self.chgDrop = OptionMenu(self.chgFrame,
+									  self.chgDropContent,
+									  {'index':"d",'name':'None','dur':'None','decs':'None'})
+
+		else:
+			self.chgDrop = OptionMenu(self.chgFrame,
+									  self.chgDropContent,
+									  *taskls)
 		self.chgDrop.grid(row=1, columnspan=2)
 
 
@@ -136,12 +142,10 @@ class AppWin(Frame):
 	def createTask(self, event):
 		if self.addDurEntry.get() == "":
 			self.addDurContent.set("Empty Duration not allowed")
+			return
 
-		if taskls[0]['index'] == "d":
-			taskls.pop()
-
-		##working here	
-		elif len(taskls) == 1:
+		##working here
+		if len(taskls) == 1:
 			
 			taskls.append({'index':len(taskls),
 						   'name' :self.addNameEntry.get(),
@@ -152,7 +156,15 @@ class AppWin(Frame):
 						   'name' :self.addNameEntry.get(),
 						   'dur'  :self.addDurEntry.get(),
 						   'decs' :self.addDescEntry.get()})
-		print(taskls)
+		self.dropMenu()
+
+	def setTask(self):
+		# n = int(self.chgDropContent.get()['index'])
+		print( self.chgDropContent.get())
+		# self.chgNameContent.set(taskls[n]['name'])
+		# self.chgDurContent.set(taskls[n]['dur'])
+		# self.chgDescContent.set(taskls[n]['desc'])
+	def dropMenu(self):
 		# self.chgDropContent = StringVar(self.chgFrame)
 		# self.chgDropContent.set(taskls[0])
 
@@ -162,11 +174,6 @@ class AppWin(Frame):
 
 		self.chgDrop.grid(row=1, columnspan=2)
 
-		self.chgDropContent.set(taskls[0])
-		print(self.chgDurContent.get())
-	def setTask(self, event):
-		pass
-
-	def dropMenu(self, event):
-		pass
+		# self.chgDropContent.set(taskls[0])
+		self.setTask()
 
