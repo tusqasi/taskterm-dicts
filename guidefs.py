@@ -100,34 +100,31 @@ class AppWin(Frame):
 		self.addBtn = Button(addFrame, text='Add Task')
 		self.addBtn.grid(row=3,columnspan=2)
 		self.addBtn.bind('<Button-1>',
-						  self.addBtnFunc)
+						  self.add_btn_func)
 
 		self.chgBtn = Button(self.chgFrame,text='Change Task')
 		self.chgBtn.grid(row=5,columnspan=2)
 		self.chgBtn.bind('<Button-1>',
-						  self.chgBtnFunc)
+						  self.chg_btn_func)
 		
 
 
-	def createTask(self):
-		if len(taskls) == 1:
-			
-			taskls.append({'index':len(taskls),
-						   'name' :self.addNameEntry.get(),
-						   'dur'  :self.addDurEntry.get(),
-						   'decs' :self.addDescEntry.get()})
-		else:
-			taskls.append({'index':len(taskls),
-						   'name' :self.addNameEntry.get(),
-						   'dur'  :self.addDurEntry.get(),
-						   'decs' :self.addDescEntry.get()})
-
-	def setTask():
+	def create_task(self):
+		pass
+		
+	def set_task():
 		pass
 
 
-	def chgBtnFunc();
+	def chg_btn_func(self, event):
 		pass
 
-	def addBtnFunc():
+	def add_btn_func(self, event):
 		pass
+
+	def drop_menu_func(self):
+		self.dropMenuCtn = StringVar()
+		self.dropMenu = OptionMenu(self.chgFrame,
+								   self.dropMenuCtn,
+								  *taskls,
+								   command=self.update_drop_menu)
